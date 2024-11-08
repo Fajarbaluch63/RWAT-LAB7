@@ -1,0 +1,27 @@
+<div class="todos">
+    <form [formGroup]="inputTodo" (ngSubmit)="addTodo()">
+      <input 
+        type="text"
+        formControlName="content" 
+        placeholder="Insert Todo..."
+        class="todo-input"
+      /> 
+      <input 
+        type="text" 
+        [formControl]="searchTermControl" 
+        placeholder="Search Todos..." 
+      />
+
+      <input 
+        type="submit" 
+        value="Add Todo" 
+        class="todo-submit" 
+        [disabled]="inputTodo.invalid"/> <!-- Disable if form is invalid -->
+    </form>
+  
+    <div *ngFor="let todo of filteredTodos; let i = index;" [ngClass]="{ done: todo.completed }" class="todo">
+        <div class="id">{{todo.id}}</div>
+        <div class="content" (click)="toggleDone(todo.id)">{{todo.content}}</div>
+        <button class="delete" (click)="deleteTodo(todo.id)">Remove</button>
+    </div>
+</div>
