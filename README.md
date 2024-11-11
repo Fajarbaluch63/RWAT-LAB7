@@ -84,7 +84,6 @@ Welcome to the **Todo Manager** application! This project is built with Angular 
 
 ## 🔗 Links
 GitHub Repository: https://github.com/Fajarbaluch63/RWAT-LAB7.git
----
 
 Live Demo on GitHub Pages: [Todo Manager Live](https://fajarbaluch63.github.io/RWAT-LAB7/)
 
