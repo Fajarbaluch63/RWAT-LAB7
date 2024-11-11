@@ -5,72 +5,40 @@ import { Todo } from './models/Todo';
   providedIn: 'root',
 })
 export class TodoService {
-  url = 'http://localhost:3000/todos'; // Ensure this URL points to your JSON server
+  private storageKey = 'todos'; // Key for storing todos in Local Storage
 
-  // Fetch all todos
+  // Fetch all todos from Local Storage
   async getTodos(): Promise<Todo[]> {
-    const response = await fetch(this.url);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const todos: Todo[] = await response.json();
-    return todos;
+    const todosJson = localStorage.getItem(this.storageKey);
+    return todosJson ? JSON.parse(todosJson) : [];
   }
 
-  // Add a new todo
+  // Add a new todo to Local Storage
   async addTodo(content: string): Promise<void> {
+    const todos = await this.getTodos();
     const newTodo: Todo = {
-      id: Date.now(), // Use a unique ID based on the current timestamp
+      id: Date.now(), // Unique ID based on timestamp
       content,
       completed: false,
     };
-
-    await fetch(this.url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newTodo),
-    });
+    todos.push(newTodo);
+    localStorage.setItem(this.storageKey, JSON.stringify(todos));
   }
 
+  // Toggle the completion status of a todo in Local Storage
   async toggleTodoCompletion(id: number): Promise<void> {
-    console.log("Attempting to toggle completion for ID:", id);
-    
     const todos = await this.getTodos();
-    const existingTodo = todos.find((todo) => todo.id === id);
-    
-    if (existingTodo) {
-        existingTodo.completed = !existingTodo.completed;
-        const response = await fetch(`${this.url}/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ completed: existingTodo.completed }),
-        });
-        
-        if (!response.ok) {
-            console.error(`Failed to update todo with ID ${id}. Status: ${response.statusText}`);
-        }
-    } else {
-        console.error(`Todo with ID ${id} not found.`);
+    const todo = todos.find(t => t.id === id);
+    if (todo) {
+      todo.completed = !todo.completed;
+      localStorage.setItem(this.storageKey, JSON.stringify(todos));
     }
-}
-
-
-async deleteTodo(id: number): Promise<void> {
-  const response = await fetch(`http://localhost:3000/todos/${id}`, {
-    method: 'DELETE',
-  });
-
-  if (!response.ok) {
-    console.error(`Error deleting todo with ID ${id}:`, response.statusText);
-  } else {
-    console.log(`Todo with ID ${id} deleted successfully.`);
   }
-}
 
-
-
+  // Delete a todo from Local Storage
+  async deleteTodo(id: number): Promise<void> {
+    const todos = await this.getTodos();
+    const updatedTodos = todos.filter(todo => todo.id !== id);
+    localStorage.setItem(this.storageKey, JSON.stringify(updatedTodos));
+  }
 }
