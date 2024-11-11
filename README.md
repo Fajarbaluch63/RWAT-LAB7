@@ -4,9 +4,9 @@ Welcome to the **Todo Manager** application! This project is built with Angular 
 
 ---
 
-## 🚀 Features
+##  Features
 
-### 🌟 Core Functionality
+###  Core Functionality
 
 - **Home Page**: A welcoming Home component introduces users to the app.
 - **Todo List Display**: A Todos component that offers:
@@ -17,7 +17,7 @@ Welcome to the **Todo Manager** application! This project is built with Angular 
   - **Dynamic List Rendering**: Uses `*ngFor` to display todos dynamically.
 - **Form Integration**: A form within the Todos component allows adding new todos using Angular’s form features.
 
-### ⚙️ Advanced Features
+###  Advanced Features
 
 - **Angular Services**: The `TodoService` handles CRUD operations and connects to Firebase for data persistence.
 - **Keyboard Shortcuts**:
@@ -46,7 +46,7 @@ Welcome to the **Todo Manager** application! This project is built with Angular 
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ### Components
 
@@ -80,7 +80,7 @@ Welcome to the **Todo Manager** application! This project is built with Angular 
 
 ---
 
-## 📦 Installation
+##  Installation
 
 1. **Clone the Repository**:  
    ```bash
