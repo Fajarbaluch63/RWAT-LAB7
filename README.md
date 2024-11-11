@@ -80,16 +80,12 @@ Welcome to the **Todo Manager** application! This project is built with Angular 
 
 ---
 
-##  Installation
-
-1. **Clone the Repository**:  
-   ```bash
-   git clone https://github.com/yourusername/todo-manager.git
-   cd todo-manager
 
 
 ## 🔗 Links
 GitHub Repository: https://github.com/Fajarbaluch63/RWAT-LAB7.git
+---
+
 Live Demo on GitHub Pages: [Todo Manager Live](https://fajarbaluch63.github.io/RWAT-LAB7/)
 
 
