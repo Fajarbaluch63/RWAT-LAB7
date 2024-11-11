@@ -5,7 +5,7 @@ import { Todo } from './models/Todo';
   providedIn: 'root',
 })
 export class TodoService {
-  private storageKey = 'todos'; // Key for storing todos in Local Storage
+  private storageKey = 'todos'; // Local Storage key for todos
 
   // Fetch all todos from Local Storage
   async getTodos(): Promise<Todo[]> {
@@ -17,7 +17,7 @@ export class TodoService {
   async addTodo(content: string): Promise<void> {
     const todos = await this.getTodos();
     const newTodo: Todo = {
-      id: Date.now(), // Unique ID based on timestamp
+      id: Date.now(), // Unique ID based on the timestamp
       content,
       completed: false,
     };
